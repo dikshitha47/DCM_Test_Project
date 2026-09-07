@@ -1,0 +1,52 @@
+manifest_version: 2
+type: DCM_PROJECT
+
+default_target: PROD
+
+targets:
+  DEV:
+    account_identifier: IYAGTXD-QE77080
+    project_name: TEST_DB.TEST_SCHEMA.TEST_DCM_PROJ_DEV
+    project_owner: ACCOUNTADMIN
+    templating_config: DEV
+
+  PROD:
+    account_identifier: IYAGTXD-QE77080
+    project_name: TEST_DB.TEST_SCHEMA.TEST_DCM_PROJ_PROD
+    project_owner: ACCOUNTADMIN
+    templating_config: PROD
+
+templating:
+  defaults:
+    project_owner_role: "ACCOUNTADMIN"
+    wh_size: "SMALL"
+  configurations:
+    DEV:
+      env_suffix: "DEV"
+      teams:
+        - name: "BRONZE"
+          data_retention_days: 1
+          add_employees: FALSE
+
+        - name: "SILVER"
+          data_retention_days: 1
+          add_employees: TRUE
+
+        - name: "GOLD"
+          data_retention_days: 1
+          add_employees: TRUE
+
+    PROD:  
+      env_suffix: "PROD"
+      teams:
+        - name: "BRONZE"
+          data_retention_days: 1
+          add_employees: TRUE
+
+        - name: "SILVER"
+          data_retention_days: 1
+          add_employees: TRUE
+
+        - name: "GOLD"
+          data_retention_days: 1
+          add_employees: TRUE
